@@ -1,0 +1,34 @@
+﻿@{
+    Pharmacist med = (Pharmacist)ViewBag.Pharmacist; 
+}
+<div class="row">
+    <dl class="col-6 row">
+        <dt class="col-4">@Html.DisplayNameFor(e=>med.Id)</dt>
+        <dd class="col-8">@Html.DisplayFor(e=>med.Id)</dd>
+
+        <dt class="col-4">@Html.DisplayNameFor(e=>med.FullName)</dt>
+        <dd class="col-8">@Html.DisplayFor(e=>med.FullName)</dd>
+
+        <dt class="col-4">@Html.DisplayNameFor(e=>med.BirthDate)</dt>
+        <dd class="col-8">@Html.DisplayFor(e=>med.BirthDate)</dd>
+
+        <dt class="col-4">@Html.DisplayNameFor(e=>med.Specialization)</dt>
+        <dd class="col-8">@Html.DisplayFor(e=>med.Specialization)</dd>
+
+        <dt class="col-4">@Html.DisplayNameFor(e=>med.Salary)</dt>
+        <dd class="col-8">@Html.DisplayFor(e=>med.Salary)</dd>
+
+        <dt class="col-4">@Html.DisplayNameFor(e=>med.IsActive)</dt>
+        <dd class="col-8">@Html.DisplayFor(e=>med.IsActive)</dd>
+
+        <dt class="col-4">@Html.DisplayNameFor(e=>med.PhoneNumber)</dt>
+        <dd class="col-8">@Html.DisplayFor(e=>med.PhoneNumber)</dd>
+
+        <dt class="col-4">@Html.DisplayNameFor(e=>med.Code)</dt>
+        <dd class="col-8">@Html.DisplayFor(e=>med.Code)</dd>
+
+
+    </dl>
+
+    <img src="@med.ImagePath" class="col-4 card" />
+</div>

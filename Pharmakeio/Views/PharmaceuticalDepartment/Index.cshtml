@@ -1,0 +1,58 @@
+﻿
+@model IEnumerable<PharmaceuticalDepartment>
+
+
+
+<h1 class="alert alert-primary text-center">Pharmaceutical Departments</h1>
+
+
+
+<a class="row btn btn-success mb-3" asp-controller="PharmaceuticalDepartment" asp-action="GetCreateView">Create a New medicines department </a>
+
+<div class="row mb-10 justify-content-center">
+    <form method="get" class="col-md-6">
+        <div class="input-group">
+            <input type="text" name="search" class="form-control" value="@ViewBag.Search" />
+            <button type="submit" class="btn btn-outline-primary input-group-append"><i class="bi bi-search"></i></button>
+        </div>
+    </form>
+</div>
+
+<br />
+<br />
+@if (Model.Count() > 0)
+{
+    <div class="d-flex justify-content-center">
+     @foreach (var depart  in Model)
+   {
+    <div class="card mb-3 text-center bg-transparent border-success" style="display:inline-block; width:18rem">
+        <div class="card-header bg-transparent border-success">@depart.Name</div>
+        <div class="card-body bg-transparent border-success">
+            <h5 class="card-title">@depart.CreatedAt.ToShortDateString()</h5>
+            <p class="card-text">@depart.NumberOfProducts</p>
+        </div>
+        <div class="d-flex justify-content-center mb-2">
+            <a asp-controller="PharmaceuticalDepartment" asp-action="GetDetailsView" asp-route-id="@depart.Id"
+               class="btn btn-outline-primary" title="Details">
+                <i class="bi bi-list-ul"></i>
+            </a>
+            &nbsp;
+            <a asp-controller="PharmaceuticalDepartment" asp-action="GetEditView" asp-route-id="@depart.Id"
+               class="btn btn-outline-success" title="Edit">
+                <i class="bi bi-pencil-square"></i>
+            </a>
+            &nbsp;
+            <a asp-controller="PharmaceuticalDepartment" asp-action="GetDeleteView" asp-route-id="@depart.Id"
+               class="btn btn-outline-danger" title="Delete">
+                <i class="bi bi-trash"></i>
+            </a>
+        </div>
+    </div>
+    }
+    </div>
+   
+}
+else
+{
+    <h1 class="alert alert-danger text-center">There is no data.</h1>
+}

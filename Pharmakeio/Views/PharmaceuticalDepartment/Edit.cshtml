@@ -1,0 +1,40 @@
+﻿@model PharmaceuticalDepartment
+
+<h1 class="alert alert-info text-center">Edit Pharmaceutical Department</h1>
+
+<div class="row">
+    <form class="col-4" method="post" asp-controller="PharmaceuticalDepartment" asp-action="EditPharmDept" enctype="multipart/form-data">
+
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <input type="hidden" asp-for="Id" />
+        <input type="hidden" asp-for="NumberOfProducts" />
+        <input type="hidden" asp-for="CreatedAt" />
+
+        <div>
+            <label asp-for="Name"></label>
+            <input type="text" asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div>
+            <label asp-for="Description"></label>
+            <input type="text" asp-for="Description" class="form-control" />
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+        <div>
+            <label asp-for="Code"></label>
+            <input asp-for="Code" class="form-control" />
+            <span asp-validation-for="Code" class="text-danger"></span>
+        </div>
+
+        <div>
+            <label asp-for="ConfirmCode"></label>
+            <input asp-for="ConfirmCode" class="form-control" />
+            <span asp-validation-for="ConfirmCode" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-2">Edit</button>
+        <a asp-controller="PharmaceuticalDepartment" asp-action="GetIndexView" class="btn btn-success mt-2"><i class="bi bi-arrow-left-circle"> Back to List</i></a>
+    </form>
+
+</div>

@@ -1,0 +1,25 @@
+﻿@{
+    PharmaceuticalDepartment dept = (PharmaceuticalDepartment)ViewBag.PharmaceuticalDepartment; //////////////////////////////////////////// erroooor
+}
+<div class="row">
+    <dl class="col-6 row">
+        <dt class="col-2">@Html.DisplayNameFor(e=>dept.Id)</dt>
+        <dd class="col-10">@Html.DisplayFor(e=>dept.Id)</dd>
+
+        <dt class="col-2">@Html.DisplayNameFor(e=>dept.Name)</dt>
+        <dd class="col-10">@Html.DisplayFor(e=>dept.Name)</dd>
+
+        <dt class="col-2">@Html.DisplayNameFor(e=>dept.Description)</dt>
+        <dd class="col-10">@Html.DisplayFor(e=>dept.Description)</dd>
+
+        <dt class="col-4">@Html.DisplayNameFor(e=>dept.Code)</dt>
+        <dd class="col-8">@Html.DisplayFor(e=>dept.Code)</dd>
+
+        <dt class="col-2">@Html.DisplayNameFor(e=>dept.CreatedAt)</dt>
+        <dd class="col-10">@Html.DisplayFor(e=>dept.CreatedAt)</dd>
+
+        <dt class="col-4">@Html.DisplayNameFor(e=>dept.NumberOfProducts)</dt>
+        <dd class="col-8">@Html.DisplayFor(e=>dept.NumberOfProducts)</dd>
+    </dl>
+
+</div>

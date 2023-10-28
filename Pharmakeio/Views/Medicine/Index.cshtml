@@ -1,0 +1,158 @@
+﻿@model IEnumerable<Medicine>
+
+<h1 class="alert alert-primary text-center">Medicines</h1>
+
+<a asp-controller="Medicine" asp-action="GetCreateView" class="btn btn-success mb-3">Create a New medicine </a>
+
+
+<div class="row mb-2">
+
+    <form method="get" class="col-4" asp-controller="Medicine" asp-action="GetIndexView">
+
+        <input type="hidden" name="search" value="@ViewBag.MedicineSearch" />
+        <input type="hidden" name="pageSize" value="@ViewBag.pageSize" />
+        <input type="hidden" name="pageNumber" value="@ViewBag.pageNumber" />
+
+        <select class="form-control" name="deptId" onchange="this.form.submit()"
+                asp-items="@(new SelectList(ViewBag.AllDepartments, "Id", "Name", ViewBag.SelectedDeptId))">
+            <option value="0">All Departments</option>
+        </select>
+    </form>
+
+
+    <form method="get" class="col-4 ">
+
+        <input type="hidden" name="deptId" value="@ViewBag.SelectedDeptId" />
+        <input type="hidden" name="pageSize" value="@ViewBag.pageSize" />
+        <input type="hidden" name="pageNumber" value="@ViewBag.pageNumber" />
+
+        <div class="input-group">
+            <input type="text" name="search" class="form-control" value="@ViewBag.MedicineSearch" />
+            <button type="submit" class="btn btn-outline-primary input-group-append"><i class="bi bi-search"></i></button>
+        </div>
+    </form>
+
+    <form method="get" asp-controller="Medicine" asp-action="GetIndexView" class="col-4 row">
+
+        <input type="hidden" name="search" value="@ViewBag.MedicineSearch" />
+        <input type="hidden" name="deptId" value="@ViewBag.SelectedDeptId" />
+
+        <input type="number" name="pageSize" id="pageSize" title="page size" value="@ViewBag.pageSize" class="text-center col-2" />
+        <input type="number" name="pageNumber" id="pageNumber" title="page number" value="@ViewBag.pageNumber" class="text-center col-2" />
+        <button type="submit" class="btn btn-outline-primary input-group-append col-4"><i class="bi bi-file-earmark"></i></button>
+
+
+    </form>
+
+</div>
+
+@if (Model.Count() > 0)
+{
+    <table class="table table-bordered table-striped table-hover">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(e=>e.Id)</th>
+                <th>
+                    <div style="width:50%;float:left;text-align:left">@Html.DisplayNameFor(e=>e.Name)</div>
+                    <div style="width:50%;float:right;text-align:right">
+                        <a asp-controller="Medicine"
+                           asp-action="GetIndexView"
+                           asp-route-sortType="Name"
+                           asp-route-sortOrder="asc"
+                           asp-route-search="@ViewBag.MedicineSearch"
+                           asp-route-deptId="@ViewBag.SelectedDeptId"
+                           asp-route-pageSize="@ViewBag.PageSize"
+                           asp-route-pageNumber="@ViewBag.PageNumber"
+                           style="text-decoration:none">
+                            <i class="bi bi-arrow-up"></i>
+                        </a>
+                        <a asp-controller="Medicine"
+                           asp-action="GetIndexView"
+                           asp-route-sortType="Name"
+                           asp-route-sortOrder="desc"
+                           asp-route-search="@ViewBag.MedicineSearch"
+                           asp-route-deptId="@ViewBag.SelectedDeptId"
+                           asp-route-pageSize="@ViewBag.PageSize"
+                           asp-route-pageNumber="@ViewBag.PageNumber"
+                           style="text-decoration:none">
+                            <i class="bi bi-arrow-down"></i>
+                        </a>
+                    </div>
+                </th>
+                <th>
+                    <div style="width:50%;float:left;text-align:left">@Html.DisplayNameFor(e=>e.ExpiryDate)</div>
+                    <div style="width:50%;float:right;text-align:right">
+                        <a asp-controller="Medicine"
+                           asp-action="GetIndexView"
+                           asp-route-sortType="ExpiryDate"
+                           asp-route-sortOrder="asc"
+                           asp-route-search="@ViewBag.MedicineSearch"
+                           asp-route-deptId="@ViewBag.SelectedDeptId"
+                           asp-route-pageSize="@ViewBag.PageSize"
+                           asp-route-pageNumber="@ViewBag.PageNumber"
+                           style="text-decoration:none">
+                            <i class="bi bi-arrow-up"></i>
+                        </a>
+                        <a asp-controller="Medicine"
+                           asp-action="GetIndexView"
+                           asp-route-sortType="ExpiryDate"
+                           asp-route-sortOrder="desc"
+                           asp-route-search="@ViewBag.MedicineSearch"
+                           asp-route-deptId="@ViewBag.SelectedDeptId"
+                           asp-route-pageSize="@ViewBag.PageSize"
+                           asp-route-pageNumber="@ViewBag.PageNumber"
+                           style="text-decoration:none">
+                            <i class="bi bi-arrow-down"></i>
+                        </a>
+                    </div>
+                </th>
+                <th>@Html.DisplayNameFor(e=>e.Price)</th>
+                <th>@Html.DisplayNameFor(e=>e.ImagePath)</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var medicine in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(e=>medicine.Id)
+                    </td>
+                    <td>@Html.DisplayFor(e=>medicine.Name)</td>
+                    <td>@Html.DisplayFor(e=>medicine.ExpiryDate)</td>
+                    <td>@Html.DisplayFor(e=>medicine.Price)</td>
+                    <td>
+                        <div style="width:100%;height:100%">
+                            <img src="@medicine.ImagePath" style="width:15rem; height:15rem; border-radius:50%" />
+                        </div>
+                    </td>
+                    <td>
+                        <a asp-controller="Medicine" asp-action="GetDetailsView" asp-route-id="@medicine.Id"
+                           class="btn btn-outline-primary" title="Details">
+                            <i class="bi bi-list-ul"></i>
+                        </a>
+                        <a asp-controller="Medicine" asp-action="GetEditView" asp-route-id="@medicine.Id"
+                           class="btn btn-outline-success" title="Edit">
+                            <i class="bi bi-pencil-square"></i>
+                        </a>
+                        <a asp-controller="Medicine" asp-action="GetDeleteView" asp-route-id="@medicine.Id"
+                           class="btn btn-outline-danger" title="Delete">
+                            <i class="bi bi-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfood>
+            <tr>
+                <th colspan="3" style="text-align:right">Total</th>
+                <th>@Model.Sum(emp=>emp.Price)</th>
+                <th></th>
+            </tr>
+        </tfood>
+    </table>
+}
+else
+{
+    <h1 class="alert alert-danger text-center">There is no data.</h1>
+}

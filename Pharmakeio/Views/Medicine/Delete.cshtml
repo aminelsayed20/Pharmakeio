@@ -1,0 +1,12 @@
+﻿@model Medicine
+
+<h1 class="alert alert-danger">Are you sure you want to delete this?</h1>
+
+<partial name="_MedicineData" />
+
+<form method="post" asp-controller="Medicine" asp-action="DeleteMedicine">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Delete</button>
+</form>
+
+<a asp-controller="Medicine" asp-action="GetIndexView">Back to List</a>

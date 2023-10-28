@@ -1,0 +1,42 @@
+﻿@{
+    Medicine med = (Medicine)ViewBag.Medicine; 
+}
+<div class="row">
+    <dl class="col-6 row">
+        <dt class="col-2">@Html.DisplayNameFor(e=>med.Id)</dt>
+        <dd class="col-10">@Html.DisplayFor(e=>med.Id)</dd>
+
+        <dt class="col-2">@Html.DisplayNameFor(e=>med.Name)</dt>
+        <dd class="col-10">@Html.DisplayFor(e=>med.Name)</dd>
+
+        <dt class="col-2">@Html.DisplayNameFor(e=>med.Description)</dt>
+        <dd class="col-10">@Html.DisplayFor(e=>med.Description)</dd>
+
+        <dt class="col-4">@Html.DisplayNameFor(e=>med.ProductionDate)</dt>
+        <dd class="col-8">@Html.DisplayFor(e=>med.ProductionDate)</dd>
+
+        <dt class="col-2">@Html.DisplayNameFor(e=>med.ExpiryDate)</dt>
+        <dd class="col-10">@Html.DisplayFor(e=>med.ExpiryDate)</dd>
+
+        <dt class="col-2">@Html.DisplayNameFor(e=>med.ShelfLife)</dt>
+        <dd class="col-10">@Html.DisplayFor(e=>med.ShelfLife)</dd>
+
+        <dt class="col-2">@Html.DisplayNameFor(e=>med.LastUpdate)</dt>
+        <dd class="col-10">@Html.DisplayFor(e=>med.LastUpdate)</dd>
+
+        <dt class="col-2">@Html.DisplayNameFor(e=>med.CreatedAt)</dt>
+        <dd class="col-10">@Html.DisplayFor(e=>med.CreatedAt)</dd>
+
+        <dt class="col-2">@Html.DisplayNameFor(e=>med.Price)</dt>
+        <dd class="col-10">@Html.DisplayFor(e=>med.Price)</dd>
+
+        <dt class="col-4">@Html.DisplayNameFor(e=>med.PharmaceuticalDepartmentId)</dt>
+        <dd class="col-8">
+            <a asp-controller="PharmaceuticalDepartment" asp-action="GetDetailsView" asp-route-id="@med.PharmaceuticalDepartmentId" style="text-decoration:none">
+                @Html.DisplayFor(e=>med.PharmaceuticalDepartment.Name) (@Html.DisplayFor(e=>med.PharmaceuticalDepartment.Name))
+            </a>
+        </dd>
+    </dl>
+
+    <img src="@med.ImagePath" class="col-4 card" />
+</div>

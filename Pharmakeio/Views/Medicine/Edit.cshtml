@@ -1,0 +1,79 @@
+﻿@model Medicine
+
+<h1 class="alert alert-info text-center">Edit Medicine</h1>
+
+<div class="row">
+    <form class="col-4" method="post" asp-controller="Medicine" asp-action="EditMedicine" enctype="multipart/form-data">
+
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <input type="hidden" asp-for="Id" />
+        <input type="hidden" asp-for="ImagePath" />
+        <input type="hidden" asp-for="CreatedAt" />
+
+
+        <div>
+            <label asp-for="Name"></label>
+            <input type="text" asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div>
+            <label asp-for="Description"></label>
+            <input type="text" asp-for="Description" class="form-control" />
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+        <div>
+            <label asp-for="ProductionDate"></label>
+            <input asp-for="ProductionDate" class="form-control" />
+            <span asp-validation-for="ProductionDate" class="text-danger"></span>
+        </div>
+        <div>
+            <label asp-for="ShelfLife"></label>
+            <input type="number" asp-for="ShelfLife" class="form-control" />
+            <span asp-validation-for="ShelfLife" class="text-danger"></span>
+        </div>
+        <div>
+            <label asp-for="Price"></label>
+            <input asp-for="Price" class="form-control" />
+            <span asp-validation-for="Price" class="text-danger"></span>
+        </div>
+
+        <div>
+            <label asp-for="PharmaceuticalDepartmentId"></label>
+            <select class="form-control" asp-for="PharmaceuticalDepartmentId"
+                    asp-items="@(new SelectList(ViewBag.AllDepartments,"Id", "Name"))">
+                <option selected disabled>select...</option>
+                <span asp-validation-for="PharmaceuticalDepartment" class="text-danger"></span>
+            </select>
+        </div>
+
+
+        <div>
+            <label asp-for="ImagePath"></label>
+            <input type="file" name="imageFormFile" id="imageFormFile" calss="form-control" onchange="AddImage()" />
+            <span asp-validation-for="ImagePath"></span>
+
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-2">Edit</button>
+        <a asp-controller="Medicine" asp-action="GetIndexView" class="btn btn-success mt-2"><i class="bi bi-arrow-left-circle"> Back to List</i></a>
+    </form>
+
+    <div class="col-4">
+        <img src="@Model.ImagePath" id="medImage" style="width:100%; aspect-ratio:1/1" class="card" />
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        function AddImage() {
+            document.getElementById('medImage').src = window.URL.createObjectURL(document.getElementById('imageFormFile').files[0]);
+
+            // var input = document.getElementById('imageFormFile');
+            // var imgFile = input.files[0];
+            // var imgUrl = window.URL.createObjectURL(imgFile);
+            // var imgElement = document.getElementById('empImage');
+            // imgElement.src = imgUrl;
+        }
+    </script>
+}
