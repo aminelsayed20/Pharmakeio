@@ -11,3 +11,13 @@ supporting:
 -searching
 -pagination
 -routing
+
+tools:
+Microsoft SQL Server
+ASP.NET Core MVC
+C#
+HTML, CSS, JS
+Bootstrap
+
+
+
